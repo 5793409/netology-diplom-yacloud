@@ -16,9 +16,9 @@ resource "yandex_storage_object" "image_object" {
 
 }
 
-# resource "yandex_storage_object" "image_object2" {
-#   bucket = yandex_storage_bucket.public_image_bucket.bucket
-#   key    = "puh.png"
-#   source = "puh.png"
+ resource "yandex_storage_object" "image_object2" {
+   bucket = yandex_storage_bucket.public_image_bucket.bucket
+   key    = "puh.png"
+   source = "puh.png"
 
-# }
+ }
