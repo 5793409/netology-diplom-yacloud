@@ -1,0 +1,18 @@
+[master]
+
+%{~ for i in master ~}
+${i["name"]}   ansible_host=${i["network_interface"][0]["ip_address"]}  ansible_fqdn=${i["fqdn"]}
+%{ endfor }
+
+[worker]
+
+%{~ for i in worker ~}
+${i["name"]}   ansible_host=${i["network_interface"][0]["ip_address"] } ansible_fqdn=${i["fqdn"]}
+%{ endfor }
+
+
+[all:vars]
+
+%{~ for i in bastion ~}
+ansible_ssh_common_args='-o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o ProxyCommand="ssh -W %h:%p -q user@${i["network_interface"][0]["nat_ip_address"]} -o StrictHostKeyChecking=no"'
+%{ endfor }

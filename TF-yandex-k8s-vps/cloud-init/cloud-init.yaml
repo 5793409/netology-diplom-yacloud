@@ -1,0 +1,24 @@
+#cloud-config
+users:
+  - name: user
+    groups: sudo
+    shell: /bin/bash
+    sudo: ["ALL=(ALL) NOPASSWD:ALL"]
+    ssh_authorized_keys:
+      - ${vms_ssh_root_key}
+package_update: true
+package_upgrade: false
+packages:
+  - vim
+  - wget
+# write_files:
+#   - path: /root/init.sh
+#     permissions: '0755'
+#     content: |
+#       #!/bin/bash
+#       apt purge -y motd-news-config
+#       rm -f /etc/update-motd.d/*
+#       IP_ADDRESS=$(curl https://2ip.ru)
+#       echo "<html><body><h1>Picture from kovtykh-nk-student-2025 Bucket</h1><h2>External IP Address: $IP_ADDRESS</h2><img src='https://storage.yandexcloud.net/kovtykh-nk-student-2025/image123.png'></body></html>" > /var/www/html/index.html
+# runcmd:
+#   - /root/init.sh

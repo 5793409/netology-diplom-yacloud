@@ -1,0 +1,22 @@
+[kube_control_plane]
+k8s-master-0   ansible_host=10.0.1.27  ansible_fqdn=k8s-master-0.ru-central1.internal  etcd_member_name=etcd-k8s-master-0
+k8s-master-1   ansible_host=10.0.2.26  ansible_fqdn=k8s-master-1.ru-central1.internal  etcd_member_name=etcd-k8s-master-1
+k8s-master-2   ansible_host=10.0.2.10  ansible_fqdn=k8s-master-2.ru-central1.internal  etcd_member_name=etcd-k8s-master-2
+
+
+
+[etcd:children]
+
+kube_control_plane
+
+[kube_node]
+k8s-worker-0   ansible_host=10.0.1.25 ansible_fqdn=k8s-worker-0.ru-central1.internal
+k8s-worker-1   ansible_host=10.0.1.28 ansible_fqdn=k8s-worker-1.ru-central1.internal
+k8s-worker-3   ansible_host=10.0.2.30 ansible_fqdn=k8s-worker-3.ru-central1.internal
+k8s-worker-4   ansible_host=10.0.2.22 ansible_fqdn=k8s-worker-4.ru-central1.internal
+
+
+
+[all:vars]
+ansible_ssh_common_args='-o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o ProxyCommand="ssh -W %h:%p -q user@89.169.136.113 -o StrictHostKeyChecking=no"'
+

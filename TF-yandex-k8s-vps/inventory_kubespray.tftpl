@@ -1,0 +1,23 @@
+[kube_control_plane]
+
+%{~ for i in master ~}
+${i["name"]}   ansible_host=${i["network_interface"][0]["ip_address"]}  ansible_fqdn=${i["fqdn"]}  etcd_member_name=etcd-${i["name"]}
+%{ endfor }
+
+
+[etcd:children]
+
+kube_control_plane
+
+[kube_node]
+
+%{~ for i in worker ~}
+${i["name"]}   ansible_host=${i["network_interface"][0]["ip_address"] } ansible_fqdn=${i["fqdn"]}
+%{ endfor }
+
+
+[all:vars]
+
+%{~ for i in bastion ~}
+ansible_ssh_common_args='-o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o ProxyCommand="ssh -W %h:%p -q user@${i["network_interface"][0]["nat_ip_address"]} -o StrictHostKeyChecking=no"'
+%{ endfor }

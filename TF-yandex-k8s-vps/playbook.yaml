@@ -1,0 +1,12 @@
+---
+
+- name: Ping test
+  gather_facts: false
+  hosts: all
+  # vars:
+  #   ansible_user: ubuntu
+
+  tasks:
+
+  - name: ping
+    ping:

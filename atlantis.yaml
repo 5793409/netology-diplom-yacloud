@@ -1,0 +1,19 @@
+version: 3
+projects:
+  - name: TF-create_image_backet
+    dir: TF-create_image_backet
+    workspace: default
+    autoplan:
+       when_modified: ["*.tf", "*.tfvars"]
+       enabled: true
+
+  # - name: S3storage
+  #   dir: TF-createS3backend
+  #   workspace: default
+  #   autoplan:
+  #      when_modified: ["*.tf", "*.tfvars"]
+  #      enabled: true
+
+  # - name: K8S-infra
+  #   dir: TF-yandex-k8s-vps
+  #   workspace: default
