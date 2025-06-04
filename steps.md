@@ -244,14 +244,19 @@ sudo systemctl enable haproxy --now
 
 ---
 ### Step 5 - Деплой инфраструктуры в terraform pipeline
+Репозиторий для отработки Terraform pipeline
+
+https://github.com/5793409/netology-diplom-yacloud
 
 
-Ожидаемый результат:
-1. Git репозиторий с конфигурационными файлами для настройки Kubernetes.
-2. Http доступ на 80 порту к web интерфейсу grafana.
-3. Дашборды в grafana отображающие состояние Kubernetes кластера.
-4. Http доступ на 80 порту к тестовому приложению.
-5. Atlantis или terraform cloud или ci/cd-terraform
+Pipeline Atlantis - отработал при создании PR, возможен ручной запуск 
+`atlantis plan` 
+
+`atlantis apply`
+
+https://github.com/5793409/netology-diplom-yacloud/pull/5
+
+![alt text](images/24.png)
 
 
 
@@ -307,3 +312,7 @@ sudo systemctl enable haproxy --now
 5. Репозиторий с конфигурацией Kubernetes кластера.
 6. Ссылка на тестовое приложение и веб интерфейс Grafana с данными доступа.
 7. Все репозитории рекомендуется хранить на одном ресурсе (github, gitlab)
+
+
+P.S.
+VPS прерываемые, могут быть выключены, если что пишите.
